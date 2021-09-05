@@ -23,22 +23,22 @@ def setup_db(app, database_path=database_path):
 Person
 Have title and release year
 '''
-class Person(db.Model):  
-  __tablename__ = 'People'
+# class Person(db.Model):  
+#   __tablename__ = 'People'
 
-  id = Column(Integer, primary_key=True)
-  name = Column(String)
-  catchphrase = Column(String)
+#   id = Column(Integer, primary_key=True)
+#   name = Column(String)
+#   catchphrase = Column(String)
 
-  def __init__(self, name, catchphrase=""):
-    self.name = name
-    self.catchphrase = catchphrase
+#   def __init__(self, name, catchphrase=""):
+#     self.name = name
+#     self.catchphrase = catchphrase
 
-  def format(self):
-    return {
-      'id': self.id,
-      'name': self.name,
-      'catchphrase': self.catchphrase}
+#   def format(self):
+#     return {
+#       'id': self.id,
+#       'name': self.name,
+#       'catchphrase': self.catchphrase}
 
 
 #----------------------------------------------------------------------------#
@@ -48,20 +48,25 @@ class Person(db.Model):
 class Pet(db.Model):
     __tablename_ = 'Pet'
 
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String)
-    type = db.Column(db.String)
-    breed = db.Column(db.String)
-    sex = db.Column(db.Character)
-    age = db.Column(db.Integer)
-    behavior = db.Column(db.String)
-    owner = db.Column()
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    type = Column(String)
+    breed = Column(String)
+    sex = Column(String)
+    age = Column(Integer)
+    shelter_id = Column(Integer, db.ForeignKey('Shelter.id'))
+    
 
 
 
-class Owner(db.Model):
-    __tablename_ = 'Owner'
+class Shelter(db.Model):
+    __tablename_ = 'Shelter'
 
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String)
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    city = Column(String)
+    shelter_pet = db.relationship('Pet', backref='Shelter')
+
+    def __repr__(self):
+      return f'<Shelter {self.id} {self.name}>'
 
