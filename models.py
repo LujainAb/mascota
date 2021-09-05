@@ -56,6 +56,7 @@ class Pet(db.Model):
     breed = Column(String)
     sex = Column(String)
     age = Column(Integer)
+    behaviour = Column(String)
    # shelter_id = Column(Integer, db.ForeignKey('Shelter.id'))
     
 
