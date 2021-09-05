@@ -56,7 +56,7 @@ class Pet(db.Model):
     breed = Column(String)
     sex = Column(String)
     age = Column(Integer)
-    shelter_id = Column(Integer, db.ForeignKey('Shelter.id'))
+   # shelter_id = Column(Integer, db.ForeignKey('Shelter.id'))
     
 
 
@@ -67,7 +67,7 @@ class Shelter(db.Model):
     id = Column(Integer, primary_key=True)
     name = Column(String)
     city = Column(String)
-    shelter_pet = db.relationship('Pet', backref='Shelter')
+    #shelter_pet = db.relationship('Pet', backref='Shelter')
 
     def __repr__(self):
       return f'<Shelter {self.id} {self.name}>'
