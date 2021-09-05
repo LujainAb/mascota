@@ -12,6 +12,13 @@ def create_app(test_config=None):
   migrate = Migrate(app,db)
   setup_db(app)
   
+
+  @app.route('/')
+  def Welcome():
+    return "Welcome To Mascota! a place where you can adopt a furry family member ♡"
+  #----------------------------------------------------------------------------#
+  # Shelter endpoints.
+  #----------------------------------------------------------------------------#
   
   @app.route('/shelters' , methods=['GET'])
   def get_shelters():
@@ -27,6 +34,23 @@ def create_app(test_config=None):
         "success": True,
         "shelters": shelters
     }) , 200
+
+
+  @app.route('/shelters/<id>' , methods=['GET'])
+  def get_shelters(id):
+
+    shelter = Shelter.query.filter(Shelter.id == id).one_or_none()
+    
+    #checking if the shelter exists , if not return an appropriate error
+    if (shelter is None):
+      abort(404)
+    
+    return jsonify({
+      "success": True,
+      "shelter": shelter.format()
+    }) , 200
+
+
 
 
   return app
