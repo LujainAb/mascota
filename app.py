@@ -37,7 +37,7 @@ def create_app(test_config=None):
 
 
   @app.route('/shelters/<id>' , methods=['GET'])
-  def get_shelters(id):
+  def get_shelter_details(id):
 
     shelter = Shelter.query.filter(Shelter.id == id).one_or_none()
     
