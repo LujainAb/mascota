@@ -13,9 +13,20 @@ def create_app(test_config=None):
   setup_db(app)
   
   
-  @app.route('/coolkids')
-  def be_cool():
-    return "Be cool, man, be coooool! You're almost a FSND grad!"
+  @app.route('/shelters' , methods=['GET'])
+  def get_shelters():
+    #querying all shelters avalible 
+    shelters_query = Shelter.query.all()
+    #checkign if the returned result from the query is empty or not , if yes return an appropriate error
+    if len(shelters_query) == 0:
+        abort(404)
+    #fortmatting the shelters data representation 
+    shelters = [shelter.format() for shelter in shelters_query]
+
+    return jsonify({
+        "success": True,
+        "shelters": shelters
+    }) , 200
 
 
   return app

@@ -58,6 +58,35 @@ class Pet(db.Model):
     age = Column(Integer)
     behaviour = Column(String)
    # shelter_id = Column(Integer, db.ForeignKey('Shelter.id'))
+    def __init__(self, name, type, breed, sex , age,behaviour):
+      self.name = name
+      self.type = type
+      self.breed = breed
+      self.sex = sex
+      self.age = age
+      self.behaviour = behaviour
+
+    def insert(self):
+      db.session.add(self)
+      db.session.commit()
+  
+    def update(self):
+      db.session.commit()
+
+    def delete(self):
+      db.session.delete(self)
+      db.session.commit()
+
+    def format(self):
+      return {
+        'id': self.id,
+        'name': self.name,
+        'type': self.type,
+        'breed': self.breed,
+        'sex': self.sex,
+        'age': self.age,
+        'behaviour': self.behaviour
+      }
     
 
 
@@ -70,6 +99,25 @@ class Shelter(db.Model):
     city = Column(String)
     #shelter_pet = db.relationship('Pet', backref='Shelter')
 
-    def __repr__(self):
-      return f'<Shelter {self.id} {self.name}>'
+    def __init__(self, name, city):
+      self.name = name
+      self.city = city
+
+    def insert(self):
+      db.session.add(self)
+      db.session.commit()
+  
+    def update(self):
+      db.session.commit()
+
+    def delete(self):
+      db.session.delete(self)
+      db.session.commit()
+
+    def format(self):
+      return {
+        'id': self.id,
+        'name': self.name,
+        'city': self.city
+      }
 
