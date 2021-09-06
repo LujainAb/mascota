@@ -71,6 +71,61 @@ def create_app(test_config=None):
         "shelters": shelters
     }) , 200
 
+  #----------------------------------------------------------------------------#
+  # Pet endpoints.
+  #----------------------------------------------------------------------------#
+  
+  @app.route('/pets' , methods=['GET'])
+  def get_pets():
+    #querying all pets avalible 
+    pets_query = Pet.query.all()
+    #checkign if the returned result from the query is empty or not , if yes return an appropriate error
+    if len(pets_query) == 0:
+        abort(404)
+    #fortmatting the pets data representation 
+    pets = [pet.format() for pet in pets_query]
+
+    return jsonify({
+        "success": True,
+        "pets": pets
+    }) , 200
+  
+  @app.route('/pets/<id>' , methods=['GET'])
+  def get_pet_details(id):
+
+    pet = Pet.query.filter(Pet.id == id).one_or_none()
+    
+    #checking if the pet exists , if not return an appropriate error
+    if (pet is None):
+      abort(404)
+    
+    return jsonify({
+      "success": True,
+      "pet": pet.format()
+    }) , 200
+
+  @app.route('/pets/search', methods=['POST'])  
+  def pet_search():
+    body = request.get_json()
+    # to check if the json body is submitted or not
+    if not body:
+      abort(400)
+
+    searchTerm = body.get('searchTerm', None)
+    # to check if the search term is submitted or not
+    if (searchTerm is None):
+      abort(400)  
+    
+    pets_query = Pet.query.filter(Pet.type.ilike('%{}%'.format(searchTerm)))
+
+    pets = [pet.format() for pet in pets_query]
+
+    return jsonify({
+        "success": True,
+        "pets": pets
+    }) , 200
+
+
 
 
 
