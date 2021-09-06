@@ -50,6 +50,27 @@ def create_app(test_config=None):
       "shelter": shelter.format()
     }) , 200
 
+  @app.route('/shelters/search', methods=['POST'])  
+  def shelter_search():
+    body = request.get_json()
+    # to check if the json body is submitted or not
+    if not body:
+      abort(400)
+
+    searchTerm = body.get('searchTerm', None)
+    # to check if the search term is submitted or not
+    if (searchTerm is None):
+      abort(400)  
+    
+    shelters_query = Shelter.query.filter(Shelter.name.ilike('%{}%'.format(searchTerm)))
+
+    shelters = [shelter.format() for shelter in shelters_query]
+
+    return jsonify({
+        "success": True,
+        "shelters": shelters
+    }) , 200
+
 
 
 
