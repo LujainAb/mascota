@@ -144,20 +144,18 @@ def create_app(test_config=None):
       pet_age is None):
         abort(400)
 
-    try:
-      pet = Pet(name=pet_name,
-              type=pet_type,
-              breed=pet_breed,
-              sex=pet_sex,
-              age=pet_age,
-              behaviour=pet_behaviour)
-      pet.insert()
+    pet = Pet(name='Bella',type='Cat',breed='british longhair',sex='female',age=2,behaviour='needy and scratchs alot')
+    # pet = Pet(name=pet_name,
+    #           type=pet_type,
+    #           breed=pet_breed,
+    #           sex=pet_sex,
+    #           age=pet_age,
+    #           behaviour=pet_behaviour)
+    pet.insert()
 
-      return jsonify({
+    return jsonify({
         'success': True
-      })
-    except:
-      abort(422)
+    })
 
 
 
