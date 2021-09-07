@@ -157,6 +157,61 @@ def create_app(test_config=None):
         'success': True
     })
 
+  @app.route('/pets/<id>' , methods=['DELETE'])
+  def delete_pet(id):
+
+    pet = Pet.query.filter(Pet.id == id).one_or_none()
+    
+    #checking if the pet exists , if not return an appropriate error
+    if (pet is None):
+      abort(404)
+    else:
+      pet.delete()
+
+      return jsonify({
+        "success": True,
+        "pet deleted": pet.format()
+      }) , 200
+  
+  @app.route('/pets/<id>' , methods=['PATCH'])
+  def edit_pet(id):
+    pet = Pet.query.filter(Pet.id == id).one_or_none()
+    
+    #checking if the pet exists , if not return an appropriate error
+    if (pet is None):
+      abort(404)
+    else:
+      body = request.get_json()
+    if not body:
+      abort(400)
+    
+    #getting the values
+    pet_name = body.get("name", None)
+    pet_type = body.get("type", None)
+    pet_breed = body.get("breed", None)
+    pet_sex = body.get("sex", None)
+    pet_age = body.get("age", None)
+    pet_behaviour = body.get("behaviour", None)
+
+    #Assigning the new values
+    pet.name=pet_name
+    pet.type=pet_type
+    pet.breed=pet_breed
+    pet.sex=pet_sex
+    pet.age=pet_age
+    pet.behaviour=pet_behaviour
+
+    #using the update method to update it in the db 
+    pet.update()
+
+    return jsonify({
+        "success": True,
+        "pet edited": pet.format()
+      }) , 200
+
+    
+  
+
 
 
 
