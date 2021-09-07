@@ -125,7 +125,38 @@ def create_app(test_config=None):
         "pets": pets
     }) , 200
 
+  @app.route('/pets', methods=['POST'])
+  def add_pet():
+    body = request.get_json()
+    if not body:
+      abort(400)
 
+    name = body.get('name', None)
+    type = body.get('type', None)
+    breed = body.get('breed', None)
+    sex = body.get('sex', None)
+    age = body.get('age', None)
+    behaviour = body.get('behaviour', None)
+
+    if(name is None or
+      type is None or
+      sex is None or
+      age is None):
+        abort(400)
+
+    try:
+      pet = Pet(name=name,
+                type=type,
+                breed=breed,
+                sex=sex,
+                age=age,
+                behaviour=behaviour)
+      Pet.insert()
+      return jsonify({
+        'success': True
+      })
+    except:
+      abort(422)
 
 
 
