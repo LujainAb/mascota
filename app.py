@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from flask_migrate import Migrate
 from models import setup_db, db , Shelter , Pet
+from .auth.auth import AuthError, requires_auth
 
 def create_app(test_config=None):
   # create and configure the app
@@ -21,7 +22,8 @@ def create_app(test_config=None):
   #----------------------------------------------------------------------------#
   
   @app.route('/shelters' , methods=['GET'])
-  def get_shelters():
+  @requires_auth('get:shelters')
+  def get_shelters(jwt):
     #querying all shelters avalible 
     shelters_query = Shelter.query.all()
     #checkign if the returned result from the query is empty or not , if yes return an appropriate error
@@ -37,7 +39,8 @@ def create_app(test_config=None):
 
 
   @app.route('/shelters/<id>' , methods=['GET'])
-  def get_shelter_details(id):
+  @requires_auth('get:shelters')
+  def get_shelter_details(jwt,id):
 
     shelter = Shelter.query.filter(Shelter.id == id).one_or_none()
     
@@ -51,7 +54,8 @@ def create_app(test_config=None):
     }) , 200
 
   @app.route('/shelters/search', methods=['POST'])  
-  def shelter_search():
+  @requires_auth('search:shelters')
+  def shelter_search(jwt):
     body = request.get_json()
     # to check if the json body is submitted or not
     if not body:
@@ -76,7 +80,8 @@ def create_app(test_config=None):
   #----------------------------------------------------------------------------#
   
   @app.route('/pets' , methods=['GET'])
-  def get_pets():
+  @requires_auth('get:pets')
+  def get_pets(jwt):
     #querying all pets avalible 
     pets_query = Pet.query.all()
     #checkign if the returned result from the query is empty or not , if yes return an appropriate error
@@ -91,7 +96,8 @@ def create_app(test_config=None):
     }) , 200
   
   @app.route('/pets/<id>' , methods=['GET'])
-  def get_pet_details(id):
+  @requires_auth('get:pets')
+  def get_pet_details(jwt, id):
 
     pet = Pet.query.filter(Pet.id == id).one_or_none()
     
@@ -105,7 +111,8 @@ def create_app(test_config=None):
     }) , 200
 
   @app.route('/pets/search', methods=['POST'])  
-  def pet_search():
+  @requires_auth('search:pets')
+  def pet_search(jwt):
     body = request.get_json()
     # to check if the json body is submitted or not
     if not body:
@@ -126,7 +133,8 @@ def create_app(test_config=None):
     }) , 200
 
   @app.route('/pets', methods=['POST'])
-  def add_pet():
+  @requires_auth('post:pets')
+  def add_pet(jwt):
     body = request.get_json()
     if not body:
       abort(400)
@@ -158,7 +166,8 @@ def create_app(test_config=None):
     })
 
   @app.route('/pets/<id>' , methods=['DELETE'])
-  def delete_pet(id):
+  @requires_auth('delete:pets')
+  def delete_pet(jwt,id):
 
     pet = Pet.query.filter(Pet.id == id).one_or_none()
     
@@ -174,7 +183,8 @@ def create_app(test_config=None):
       }) , 200
   
   @app.route('/pets/<id>' , methods=['PATCH'])
-  def edit_pet(id):
+  @requires_auth('edit:pets')
+  def edit_pet(jwt,id):
     pet = Pet.query.filter(Pet.id == id).one_or_none()
     
     #checking if the pet exists , if not return an appropriate error
@@ -209,7 +219,51 @@ def create_app(test_config=None):
         "pet edited": pet.format()
       }) , 200
 
-    
+
+  #----------------------------------------------------------------------------#
+  # Error handling.
+  #----------------------------------------------------------------------------#
+
+
+  @app.errorhandler(422)
+  def unprocessable(error):
+    return jsonify({
+        "success": False,
+        "error": 422,
+        "message": "unprocessable"
+    }), 422
+
+  @app.errorhandler(404)
+  def not_found(error):
+        return jsonify({
+            'success': False,
+            'error': 404,
+            'message': 'resource not found'
+        }), 404
+
+  @app.errorhandler(400)
+  def bad_request(error):
+        return jsonify({
+            'success': False,
+            'error': 400,
+            'message': 'bad request'
+        }), 400
+
+  @app.errorhandler(401)
+  def unauthorized(error):
+    return jsonify({
+        "success": False,
+        "error": 401,
+        "message": "unauthorized"
+    }), 401        
+
+  @app.errorhandler(AuthError)
+  def Auth_error(error):
+    auth = jsonify(error.error)
+    auth.status_code = error.status_code
+    return auth
+
+
   
 
 
