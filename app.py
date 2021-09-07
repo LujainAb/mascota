@@ -131,12 +131,12 @@ def create_app(test_config=None):
     if not body:
       abort(400)
 
-    pet_name = body.get('name', None)
-    pet_type = body.get('type', None)
-    pet_breed = body.get('breed', None)
-    pet_sex = body.get('sex', None)
-    pet_age = body.get('age', None)
-    pet_behaviour = body.get('behaviour', None)
+    pet_name = body.get("name", None)
+    pet_type = body.get("type", None)
+    pet_breed = body.get("breed", None)
+    pet_sex = body.get("sex", None)
+    pet_age = body.get("age", None)
+    pet_behaviour = body.get("behaviour", None)
 
     if(pet_name is None or
       pet_type is None or
@@ -144,7 +144,7 @@ def create_app(test_config=None):
       pet_age is None):
         abort(400)
 
-    pet = Pet(name='Bella',type='Cat',breed='british longhair',sex='female',age=2,behaviour='needy and scratchs alot')
+    pet = Pet(name=pet_name,type=pet_type,breed=pet_breed,sex=pet_sex,age=pet_age,behaviour=pet_behaviour)
     # pet = Pet(name=pet_name,
     #           type=pet_type,
     #           breed=pet_breed,
