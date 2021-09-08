@@ -26,8 +26,9 @@ The API may return only 3 types of errors:
 * 422: Not processable
 
 ### Endpoints
-Adopter role : 
 `GET '/'` 
+
+Adopter role : 
 
 `GET '/shelters'`
 
@@ -48,3 +49,5 @@ Shelter manager role. same permissions as adopter and:
 `PATCH '/pets/<int:id>'`
 
 `DELETE '/pets/<int:id>'`
+
+# Endpoints documentation can be found in  https://documenter.getpostman.com/view/16709336/U16jLQjy
