@@ -1,0 +1,1704 @@
+{
+	"info": {
+		"_postman_id": "f47609b2-21d2-4abc-868c-5b54c3c1ff73",
+		"name": "Mascota tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Shelter Good behaviour tests",
+			"item": [
+				{
+					"name": "Get Shelters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains shelters array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.shelters).to.have.an('array')",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/shelters",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"shelters"
+							]
+						},
+						"description": "- Fetches a JSON object with a list of shelters in the database.\n- Request Arguments: None\n- Returns: An object with a single key, shelters, that contains multiple objects of the retrieved shelters. \n\n```\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Shelters Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/shelters/1",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"shelters",
+								"1"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						},
+						"description": "- Fetches a JSON object with the specified id of the shelter in the parameter.\n- Request Arguments: id of the shelter\n- Returns: JSON object containing the shelter and its details. \n\n```\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Pets",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"value contains pets array\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.pets).to.have.an('array')\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/pets",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Pets Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/pets/2",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pets",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pet Search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"value contains pets array\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.pets).to.have.an('array')\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"searchTerm\": \"cat\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/pets/search",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pets",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Shelter Search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"value contains shelters array\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.shelters).to.have.an('array')\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"searchTerm\": \"pet\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/shelters/search",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"shelters",
+								"search"
+							]
+						},
+						"description": "- Sends a post request in order to search for a specific shelters by search term\n- Request Arguments: a json object with a key `searchterm` and a value of the desired search term\n- Returns: An array of shelters the met the search term."
+					},
+					"response": []
+				},
+				{
+					"name": "Add pet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n                \"name\":\"Cody\",\r\n                \"type\":\"Dog\",\r\n                \"breed\":\"German shepard\",\r\n                \"sex\":\"male\",\r\n                \"age\":3,\r\n                \"behaviour\":\"very quite\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/pets",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit pet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"pet edited\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n                \"name\":\"Cody edit\",\r\n                \"type\":\"Dog\",\r\n                \"breed\":\"German shepard\",\r\n                \"sex\":\"male\",\r\n                \"age\":3,\r\n                \"behaviour\":\"very quite\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/pets/8",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pets",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete pet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"pet deleted\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"name\":\"Cody\",\r\n\"type\":\"Dog\",\r\n\"breed\":\"German shepard\",\r\n\"sex\":\"male\",\r\n\"age\":3,\r\n\"behaviour\":\"very quite\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/pets/9",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pets",
+								"9"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjllSnlRWXBQeXQ2bHpxOHNnOXpWeCJ9.eyJpc3MiOiJodHRwczovL2x1amFpbmV4cC51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjEzNzlkODA2Mzc2MmMwMDcwYmYzOGVkIiwiYXVkIjoiTWFzY290IiwiaWF0IjoxNjMxMTA5NTMwLCJleHAiOjE2MzExOTU5MzAsImF6cCI6InlXSFlCb0hTZlo4T0FvQ254ZzJYbzU5WXhYNVBrY0lCIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6cGV0cyIsImVkaXQ6cGV0cyIsImdldDpwZXRzIiwiZ2V0OnNoZWx0ZXJzIiwicG9zdDpwZXRzIiwic2VhcmNoOnBldHMiLCJzZWFyY2g6c2hlbHRlcnMiXX0.iK-GD7_JUU90k0hP_XEPg3FTNfkaiE8YLjEhtNxcqJBEhThj3Csq47kw3naMaDFBOI2CpwzFWupL9kEO8vA0I9pA_MffiTJSKb8hX_6Q2DrxUzemcqhdry0yKNTmSPQN92u6y2uzFFbNXmDd2TYvDOI-ByEZIeCqIMjuPwQ8UYwi8CNHlVzZrXCZsxolFpHCKsUS9k3nsYbz4G2-XnGresXUzTDmIjelhm3PHpwadwEKsxGP76JFxhmvgHqYhy8jA-aoSWG6Y06yn0xSl-PRjV96MBMtkIheSMaiFkAxXS6v3fQUm33sVy7U9bkaFIRFMDycszGHEk7aQx9UxKZMog",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Shelter Bad behaviour tests",
+			"item": [
+				{
+					"name": "Get Shelters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401 | without token\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/shelters",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"shelters"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "- Fetches a JSON object with a list of shelters in the database.\n- Request Arguments: None\n- Returns: An object with a single key, shelters, that contains multiple objects of the retrieved shelters. \n\n```\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Shelters Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404 | invalid id\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/shelters/2000",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"shelters",
+								"2000"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						},
+						"description": "- Fetches a JSON object with the specified id of the shelter in the parameter.\n- Request Arguments: id of the shelter\n- Returns: JSON object containing the shelter and its details. \n\n```\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Pets",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401 | without token\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/pets",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Pets Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404 | invalid id\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/pets/2000",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pets",
+								"2000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pet Search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 | but returns en empty array\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"value contains empty pets array\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.pets).to.have.an('array').length ==0\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"searchTerm\": \"zzz\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/pets/search",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pets",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Shelter Search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 | but returns en empty array\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"value contains empty shelter array\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.shelters).to.have.an('array').length == 0 \r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"searchTerm\": \"pet\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/shelters/search",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"shelters",
+								"search"
+							]
+						},
+						"description": "- Sends a post request in order to search for a specific shelters by search term\n- Request Arguments: a json object with a key `searchterm` and a value of the desired search term\n- Returns: An array of shelters the met the search term."
+					},
+					"response": []
+				},
+				{
+					"name": "Add pet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 | not a complete json object. missing fields\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n                \"name\":\"Cody\",\r\n                \"type\":\"Dog\",\r\n                \"breed\":\"German shepard\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/pets",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit pet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 403 | with invalid token\", function () {\r",
+									"    pm.response.to.have.status(403);\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjllSnlRWXBQeXQ2bHpxOHNnOXpWeCJ9.eyJpc3MiOiJodHRwczovL2x1amFpbmV4cC51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjEzNzlkODA2Mzc2MmMwMDcwYmYzOGVkIiwiYXVkIjoiTWFzY290IiwiaWF0IjoxNjMxMDM2MTc4LCJleHAiOjE2MzEwNDMzNzgsImF6cCI6InlXSFlCb0hTZlo4T0FvQ254ZzJYbzU5WXhYNVBrY0lCIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6cGV0cyIsImVkaXQ6cGV0cyIsImdldDpwZXRzIiwiZ2V0OnNoZWx0ZXJzIiwicG9zdDpwZXRzIiwic2VhcmNoOnBldHMiLCJzZWFyY2g6c2hlbHRlcnMiXX0.hadu979Yr7DBicQvYoslSd58BzWerMBPx_5D7YMNDjWtBmZHZiA9hKsUel1DM6Maxy1Q88zPibFkiNwnE8rCGg8dw4U2sjKBPfA1WAD4W1TZa0ZzcgRwQpwvWWDWbNkDDtbnwGOe0lbOyFPVrMwtWr_PtpWq-AToj8-dEReVXxzMk4s2iCulu1jVxaV_oevpEj_bzV97IRc8LRLxFCRhkjBXyzJd1wP23OGzOX9K-puqZtyxYxJUc3pmhiA-IIpZMeAA97HDYmA6dizK7SHfYVXESpcTpQd5mJwnttYNtqMVjPcPH8lyVongb7ziBNrvW-me4OIVQOGD4VVO4L1B7w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n                \"name\":\"Cody edit\",\r\n                \"type\":\"Dog\",\r\n                \"breed\":\"German shepard\",\r\n                \"sex\":\"male\",\r\n                \"age\":3,\r\n                \"behaviour\":\"very quite\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/pets/1",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pets",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete pet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404 | invalid id\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"name\":\"Cody\",\r\n\"type\":\"Dog\",\r\n\"breed\":\"German shepard\",\r\n\"sex\":\"male\",\r\n\"age\":3,\r\n\"behaviour\":\"very quite\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/pets/5768",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pets",
+								"5768"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjllSnlRWXBQeXQ2bHpxOHNnOXpWeCJ9.eyJpc3MiOiJodHRwczovL2x1amFpbmV4cC51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjEzNzlkODA2Mzc2MmMwMDcwYmYzOGVkIiwiYXVkIjoiTWFzY290IiwiaWF0IjoxNjMxMTA5NTMwLCJleHAiOjE2MzExOTU5MzAsImF6cCI6InlXSFlCb0hTZlo4T0FvQ254ZzJYbzU5WXhYNVBrY0lCIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6cGV0cyIsImVkaXQ6cGV0cyIsImdldDpwZXRzIiwiZ2V0OnNoZWx0ZXJzIiwicG9zdDpwZXRzIiwic2VhcmNoOnBldHMiLCJzZWFyY2g6c2hlbHRlcnMiXX0.iK-GD7_JUU90k0hP_XEPg3FTNfkaiE8YLjEhtNxcqJBEhThj3Csq47kw3naMaDFBOI2CpwzFWupL9kEO8vA0I9pA_MffiTJSKb8hX_6Q2DrxUzemcqhdry0yKNTmSPQN92u6y2uzFFbNXmDd2TYvDOI-ByEZIeCqIMjuPwQ8UYwi8CNHlVzZrXCZsxolFpHCKsUS9k3nsYbz4G2-XnGresXUzTDmIjelhm3PHpwadwEKsxGP76JFxhmvgHqYhy8jA-aoSWG6Y06yn0xSl-PRjV96MBMtkIheSMaiFkAxXS6v3fQUm33sVy7U9bkaFIRFMDycszGHEk7aQx9UxKZMog",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Adopter Good behaviour tests",
+			"item": [
+				{
+					"name": "Get Pets",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"value contains pets array\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.pets).to.have.an('array')\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/pets",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Pets Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/pets/1",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pets",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Shelters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains drinks array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.shelters).to.have.an('array')",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/shelters",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"shelters"
+							]
+						},
+						"description": "- Fetches a JSON object with a list of shelters in the database.\n- Request Arguments: None\n- Returns: An object with a single key, shelters, that contains multiple objects of the retrieved shelters. \n\n```\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Shelters Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/shelters/1",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"shelters",
+								"1"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						},
+						"description": "- Fetches a JSON object with the specified id of the shelter in the parameter.\n- Request Arguments: id of the shelter\n- Returns: JSON object containing the shelter and its details. \n\n```\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Pet Search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"value contains pets array\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.pets).to.have.an('array')\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"searchTerm\": \"cat\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/pets/search",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pets",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add pet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 403 since credentials are valid, but permission is not present\", function () {\r",
+									"    pm.response.to.have.status(403);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n                \"name\":\"Cody\",\r\n                \"type\":\"Dog\",\r\n                \"breed\":\"German shepard\",\r\n                \"sex\":\"male\",\r\n                \"age\":3,\r\n                \"behaviour\":\"very quite\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/pets",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit pet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 403 since credentials are valid, but permission is not present\", function () {\r",
+									"    pm.response.to.have.status(403);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"name\":\"Cody\",\r\n\"type\":\"Dog\",\r\n\"breed\":\"German shepard\",\r\n\"sex\":\"male\",\r\n\"age\":3,\r\n\"behaviour\":\"very quite\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/pets/1",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pets",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete pet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 403 since credentials are valid, but permission is not present\", function () {\r",
+									"    pm.response.to.have.status(403);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"name\":\"Cody\",\r\n\"type\":\"Dog\",\r\n\"breed\":\"German shepard\",\r\n\"sex\":\"male\",\r\n\"age\":3,\r\n\"behaviour\":\"very quite\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/pets/1",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pets",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjllSnlRWXBQeXQ2bHpxOHNnOXpWeCJ9.eyJpc3MiOiJodHRwczovL2x1amFpbmV4cC51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjEzN2EzYzAwMDg0MjYwMDY5ZDlkZGRkIiwiYXVkIjoiTWFzY290IiwiaWF0IjoxNjMxMTA5NzA1LCJleHAiOjE2MzExOTYxMDUsImF6cCI6InlXSFlCb0hTZlo4T0FvQ254ZzJYbzU5WXhYNVBrY0lCIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJnZXQ6cGV0cyIsImdldDpzaGVsdGVycyIsInNlYXJjaDpwZXRzIiwic2VhcmNoOnNoZWx0ZXJzIl19.dzdsHZQ0wJ0HrUGAYTVIbph6CppycYo6Ln6vj3jRo-BfKi9-uhzCSCXnqeQDWa3rAQr5cqZXrlUaILOR7Lhm1fqeHWSxuXHJ9tZn0PMmwJH0-1-92OSZVazwJj3NTBSCvi9q7ROM0B2_f2--THvvaYmT6cjpXDafEaEpiaJhsOJoM20lg6H-7uylq7hYqwmVIFS7NkRJ6hrmD-QdsYKPK_Nnm-6LXiFcgnNdywLBgyzjBbw5gldLXDDbDzacpEczP-lm-ok2tw4rntrQEfA-kYgL7SQHNkzcc64hxXmsXlFWKiuT_ydEJlAnFbKPh1s8VzXyMlaY4ywwqI_Kj4irCQ",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Adopter Bad behaviour tests",
+			"item": [
+				{
+					"name": "Get Shelters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401 | without token\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/shelters",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"shelters"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "- Fetches a JSON object with a list of shelters in the database.\n- Request Arguments: None\n- Returns: An object with a single key, shelters, that contains multiple objects of the retrieved shelters. \n\n```\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Shelters Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404 | invalid id\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/shelters/2000",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"shelters",
+								"2000"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						},
+						"description": "- Fetches a JSON object with the specified id of the shelter in the parameter.\n- Request Arguments: id of the shelter\n- Returns: JSON object containing the shelter and its details. \n\n```\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Pets",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401 | without token\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/pets",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Pets Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404 | invalid id\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/pets/343",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pets",
+								"343"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pet Search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 | but returns en empty array\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"value contains empty pets array\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.pets).to.have.an('array').length ==0\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"searchTerm\": \"xyz\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/pets/search",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pets",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Shelter Search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 | but returns en empty array\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"value contains empty shelters array\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.shelters).to.have.an('array').length == 0 \r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"searchTerm\": \"pet\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/shelters/search",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"shelters",
+								"search"
+							]
+						},
+						"description": "- Sends a post request in order to search for a specific shelters by search term\n- Request Arguments: a json object with a key `searchterm` and a value of the desired search term\n- Returns: An array of shelters the met the search term."
+					},
+					"response": []
+				},
+				{
+					"name": "Add pet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 403 since credentials are valid, but permission is not present\", function () {\r",
+									"    pm.response.to.have.status(403);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n                \"name\":\"Cody\",\r\n                \"type\":\"Dog\",\r\n                \"breed\":\"German shepard\",\r\n                \"sex\":\"male\",\r\n                \"age\":3,\r\n                \"behaviour\":\"very quite\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/pets",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit pet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 403 since credentials are valid, but permission is not present\", function () {\r",
+									"    pm.response.to.have.status(403);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"name\":\"Cody\",\r\n\"type\":\"Dog\",\r\n\"breed\":\"German shepard\",\r\n\"sex\":\"male\",\r\n\"age\":3,\r\n\"behaviour\":\"very quite\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/pets/1",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pets",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete pet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 403 since credentials are valid, but permission is not present\", function () {\r",
+									"    pm.response.to.have.status(403);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"name\":\"Cody\",\r\n\"type\":\"Dog\",\r\n\"breed\":\"German shepard\",\r\n\"sex\":\"male\",\r\n\"age\":3,\r\n\"behaviour\":\"very quite\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mascotashop.herokuapp.com/pets/1",
+							"protocol": "https",
+							"host": [
+								"mascotashop",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pets",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjllSnlRWXBQeXQ2bHpxOHNnOXpWeCJ9.eyJpc3MiOiJodHRwczovL2x1amFpbmV4cC51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjEzN2EzYzAwMDg0MjYwMDY5ZDlkZGRkIiwiYXVkIjoiTWFzY290IiwiaWF0IjoxNjMxMTA5NzA1LCJleHAiOjE2MzExOTYxMDUsImF6cCI6InlXSFlCb0hTZlo4T0FvQ254ZzJYbzU5WXhYNVBrY0lCIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJnZXQ6cGV0cyIsImdldDpzaGVsdGVycyIsInNlYXJjaDpwZXRzIiwic2VhcmNoOnNoZWx0ZXJzIl19.dzdsHZQ0wJ0HrUGAYTVIbph6CppycYo6Ln6vj3jRo-BfKi9-uhzCSCXnqeQDWa3rAQr5cqZXrlUaILOR7Lhm1fqeHWSxuXHJ9tZn0PMmwJH0-1-92OSZVazwJj3NTBSCvi9q7ROM0B2_f2--THvvaYmT6cjpXDafEaEpiaJhsOJoM20lg6H-7uylq7hYqwmVIFS7NkRJ6hrmD-QdsYKPK_Nnm-6LXiFcgnNdywLBgyzjBbw5gldLXDDbDzacpEczP-lm-ok2tw4rntrQEfA-kYgL7SQHNkzcc64hxXmsXlFWKiuT_ydEJlAnFbKPh1s8VzXyMlaY4ywwqI_Kj4irCQ",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Homepage",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mascotashop.herokuapp.com/",
+					"protocol": "https",
+					"host": [
+						"mascotashop",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
