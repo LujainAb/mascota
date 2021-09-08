@@ -25,7 +25,13 @@ The API may return only 3 types of errors:
 * 401: unauthorized
 * 422: Not processable
 
-### Endpoints
+# Endpoints
+
+## Endpoints documentation 
+endpoint documentation can be found in  https://documenter.getpostman.com/view/16709336/U16jLQjy .
+
+_____________________
+
 `GET '/'` 
 
 Adopter role : 
@@ -50,4 +56,3 @@ Shelter manager role. same permissions as adopter and:
 
 `DELETE '/pets/<int:id>'`
 
-# Endpoints documentation can be found in  https://documenter.getpostman.com/view/16709336/U16jLQjy
