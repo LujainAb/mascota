@@ -93,7 +93,7 @@ implement verify_decode_jwt(token) method
     return the decoded payload
 '''
 def verify_decode_jwt(token):
-    jsonurl = urlopen(f'https://{AUTH0_DOMAIN}/.well-known/jwks.json')
+    jsonurl = urlopen(f'https://lujainexp.us.auth0.com/.well-known/jwks.json')
     jwks = json.loads(jsonurl.read())
     
     # GET THE DATA IN THE HEADER
