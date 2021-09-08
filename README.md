@@ -19,7 +19,7 @@ Errors are returned as JSON objects, in the format of:
      "message": "resource not found"
 }
 ```
-The API may return only 3 types of errors:
+The API may return only 4 types of errors:
 * 400: Bad Request
 * 404: Resource Not Found
 * 401: unauthorized
