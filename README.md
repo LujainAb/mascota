@@ -1,4 +1,5 @@
 Welcome To Mascota! a place where you can adopt a furry family member ♡
+
 Mascota is a pet shop that connects shelters with adopters. it lets shelters post their pets so future adopters can know about them and know where they are located.
 
 # API Reference
