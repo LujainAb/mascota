@@ -1,11 +1,11 @@
-from sqlalchemy import Column, String, create_engine , Integer
+from sqlalchemy import Column, String, create_engine, Integer
 from flask_sqlalchemy import SQLAlchemy
 import json
 import os
 
 database_path = os.environ['DATABASE_URL']
 if database_path.startswith("postgres://"):
-     database_path = database_path.replace("postgres://", "postgresql://", 1)
+    database_path = database_path.replace("postgres://", "postgresql://", 1)
 
 db = SQLAlchemy()
 
@@ -13,6 +13,8 @@ db = SQLAlchemy()
 setup_db(app)
     binds a flask application and a SQLAlchemy service
 '''
+
+
 def setup_db(app, database_path=database_path):
     app.config["SQLALCHEMY_DATABASE_URI"] = database_path
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -25,7 +27,7 @@ def setup_db(app, database_path=database_path):
 Person
 Have title and release year
 '''
-# class Person(db.Model):  
+# class Person(db.Model):
 #   __tablename__ = 'People'
 
 #   id = Column(Integer, primary_key=True)
@@ -43,9 +45,9 @@ Have title and release year
 #       'catchphrase': self.catchphrase}
 
 
-#----------------------------------------------------------------------------#
+# ----------------------------------------------------------------------------#
 # Models.
-#----------------------------------------------------------------------------#
+# ----------------------------------------------------------------------------#
 
 class Pet(db.Model):
     __tablename_ = 'Pet'
@@ -57,38 +59,37 @@ class Pet(db.Model):
     sex = Column(String)
     age = Column(Integer)
     behaviour = Column(String)
-   # shelter_id = Column(Integer, db.ForeignKey('Shelter.id'))
-    def __init__(self, name, type, breed, sex , age,behaviour):
-      self.name = name
-      self.type = type
-      self.breed = breed
-      self.sex = sex
-      self.age = age
-      self.behaviour = behaviour
+    # shelter_id = Column(Integer, db.ForeignKey('Shelter.id'))
+
+    def __init__(self, name, type, breed, sex, age, behaviour):
+        self.name = name
+        self.type = type
+        self.breed = breed
+        self.sex = sex
+        self.age = age
+        self.behaviour = behaviour
 
     def insert(self):
-      db.session.add(self)
-      db.session.commit()
-  
+        db.session.add(self)
+        db.session.commit()
+
     def update(self):
-      db.session.commit()
+        db.session.commit()
 
     def delete(self):
-      db.session.delete(self)
-      db.session.commit()
+        db.session.delete(self)
+        db.session.commit()
 
     def format(self):
-      return {
-        'id': self.id,
-        'name': self.name,
-        'type': self.type,
-        'breed': self.breed,
-        'sex': self.sex,
-        'age': self.age,
-        'behaviour': self.behaviour
-      }
-    
-
+        return {
+            'id': self.id,
+            'name': self.name,
+            'type': self.type,
+            'breed': self.breed,
+            'sex': self.sex,
+            'age': self.age,
+            'behaviour': self.behaviour
+        }
 
 
 class Shelter(db.Model):
@@ -97,27 +98,26 @@ class Shelter(db.Model):
     id = Column(Integer, primary_key=True)
     name = Column(String)
     city = Column(String)
-    #shelter_pet = db.relationship('Pet', backref='Shelter')
+    # shelter_pet = db.relationship('Pet', backref='Shelter')
 
     def __init__(self, name, city):
-      self.name = name
-      self.city = city
+        self.name = name
+        self.city = city
 
     def insert(self):
-      db.session.add(self)
-      db.session.commit()
-  
+        db.session.add(self)
+        db.session.commit()
+
     def update(self):
-      db.session.commit()
+        db.session.commit()
 
     def delete(self):
-      db.session.delete(self)
-      db.session.commit()
+        db.session.delete(self)
+        db.session.commit()
 
     def format(self):
-      return {
-        'id': self.id,
-        'name': self.name,
-        'city': self.city
-      }
-
+        return {
+            'id': self.id,
+            'name': self.name,
+            'city': self.city
+        }
